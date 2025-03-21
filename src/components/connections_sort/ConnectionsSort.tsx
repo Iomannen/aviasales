@@ -15,7 +15,9 @@ export const ConnectionsSort: FC = () => {
             },
           }}
         >
-          <Checkbox className={style.checkbox}>Все</Checkbox>
+          <Checkbox className={style.checkbox} checked>
+            Все
+          </Checkbox>
           <Checkbox className={style.checkbox}>Без пересадок</Checkbox>
           <Checkbox className={style.checkbox}>1 пересадка</Checkbox>
           <Checkbox className={style.checkbox}>2 пересадки</Checkbox>
