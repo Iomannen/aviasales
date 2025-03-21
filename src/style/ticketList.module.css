@@ -9,19 +9,43 @@
   height: 184px;
   padding: 20px;
   background-color: #ffffff;
-  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 0px 8px 0px #00000010;
 }
 .header {
   display: flex;
   justify-content: space-between;
 }
+.logo {
+  width: 110px;
+  height: 36px;
+}
 .info_component {
   padding-top: 20px;
-  width: 140px;
+  width: 141px;
   height: 40px;
 }
 .flight_info {
   display: flex;
+  height: 50px;
   gap: 20px;
-  row-gap: 10px;
+}
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #2196f3;
+}
+.grey {
+  color: #a0b0b9;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+}
+.black {
+  color: #4a4a4a;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
 }

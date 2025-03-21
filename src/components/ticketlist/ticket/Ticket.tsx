@@ -18,40 +18,30 @@ export const TicketComponent: FC<Props> = (props) => {
       <div className={style.flights}>
         <div className={style.flight_info}>
           <div className={style.info_component} key={1}>
-            <div className={style.flight_route}>{ticketInfo.to.flight}</div>
-            <div className={style.flight_time}>{ticketInfo.to.flight_time}</div>
+            <div className={style.grey}>{ticketInfo.to.flight}</div>
+            <div className={style.black}>{ticketInfo.to.flight_time}</div>
           </div>
           <div className={style.info_component} key={2}>
-            <div className={style.route_time}>В пути</div>
-            <div className={style.time}>{ticketInfo.to.duration}</div>
+            <div className={style.grey}>В ПУТИ</div>
+            <div className={style.black}>{ticketInfo.to.duration}</div>
           </div>
           <div className={style.info_component} key={3}>
-            <div className={style.connections}>
-              {ticketInfo.to.transits_number}
-            </div>
-            <div className={style.connections_codes}>
-              {ticketInfo.to.transits}
-            </div>
+            <div className={style.grey}>{ticketInfo.to.transits_number}</div>
+            <div className={style.black}>{ticketInfo.to.transits}</div>
           </div>
         </div>
         <div className={style.flight_info}>
           <div className={style.info_component} key={1}>
-            <div className={style.flight_route}>{ticketInfo.from.flight}</div>
-            <div className={style.flight_time}>
-              {ticketInfo.from.flight_time}
-            </div>
+            <div className={style.grey}>{ticketInfo.from.flight}</div>
+            <div className={style.black}>{ticketInfo.from.flight_time}</div>
           </div>
           <div className={style.info_component} key={2}>
-            <div className={style.route_time}>В пути</div>
-            <div className={style.time}>{ticketInfo.from.duration}</div>
+            <div className={style.grey}>В ПУТИ</div>
+            <div className={style.black}>{ticketInfo.from.duration}</div>
           </div>
           <div className={style.info_component} key={3}>
-            <div className={style.connections}>
-              {ticketInfo.from.transits_number}
-            </div>
-            <div className={style.connections_codes}>
-              {ticketInfo.from.transits}
-            </div>
+            <div className={style.grey}>{ticketInfo.from.transits_number}</div>
+            <div className={style.black}>{ticketInfo.from.transits}</div>
           </div>
         </div>
       </div>

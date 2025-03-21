@@ -46,17 +46,17 @@ export const useTicketInfo = (ticket: Ticket) => {
   );
   const durationBack = format(ticket.segments[1].duration * 60 * 1000, 'HH:mm');
   const info = {
-    price: ticket.price,
+    price: `${ticket.price.toLocaleString('ru-RU')} P`,
     to: {
       flight: `${ticket.segments[0].origin} - ${ticket.segments[0].destination} `,
       flight_time: `${format(ticket.segments[0].date, 'HH:mm')} - ${format(arriveDateTo, 'HH:mm')}`,
       duration: durationTo,
       transits_number:
         ticket.segments[0].stops.length === 0
-          ? `Нет пересадок`
+          ? `НЕТ ПЕРЕСАДОК`
           : ticket.segments[0].stops.length === 1
-            ? `1 пересадка`
-            : `${ticket.segments[0].stops.length} пересадки`,
+            ? `1 ПЕРЕСАДКА`
+            : `${ticket.segments[0].stops.length} ПЕРЕСАДКИ`,
       transits: ticket.segments[0].stops.join(' ,'),
     },
     from: {
@@ -65,10 +65,10 @@ export const useTicketInfo = (ticket: Ticket) => {
       duration: durationBack,
       transits_number:
         ticket.segments[1].stops.length === 0
-          ? `Нет пересадок`
+          ? `НЕТ ПЕРЕСАДОК`
           : ticket.segments[1].stops.length === 1
-            ? `1 пересадка`
-            : `${ticket.segments[1].stops.length} пересадки`,
+            ? `1 ПЕРЕСАДКА`
+            : `${ticket.segments[1].stops.length} ПЕРЕСАДКИ`,
       transits: ticket.segments[1].stops.join(' ,'),
     },
   };
