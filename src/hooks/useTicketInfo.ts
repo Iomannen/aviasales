@@ -1,4 +1,4 @@
-import { addMinutes, parseISO, format } from 'date-fns';
+import { addMinutes, parseISO, format, intervalToDuration } from 'date-fns';
 interface Ticket {
   // Цена в рублях
   price: number;
@@ -37,39 +37,45 @@ export const useTicketInfo = (ticket: Ticket) => {
   // Разбираем сегмент отвечающий за первый полет
   const formatedDateTo = parseISO(ticket.segments[0].date);
   const arriveDateTo = addMinutes(formatedDateTo, ticket.segments[0].duration);
-  const durationTo = format(ticket.segments[0].duration * 60 * 1000, 'HH:mm');
+  const durationTo = intervalToDuration({
+    start: new Date(0),
+    end: new Date(ticket.segments[0].duration * 60 * 1000),
+  });
   // Общее время перелёта в минутах
   const formatedDateBack = parseISO(ticket.segments[1].date);
   const arriveDateBack = addMinutes(
     formatedDateBack,
     ticket.segments[1].duration,
   );
-  const durationBack = format(ticket.segments[1].duration * 60 * 1000, 'HH:mm');
+  const durationBack = intervalToDuration({
+    start: new Date(0),
+    end: new Date(ticket.segments[1].duration * 60 * 1000),
+  });
   const info = {
     price: `${ticket.price.toLocaleString('ru-RU')} P`,
     to: {
       flight: `${ticket.segments[0].origin} - ${ticket.segments[0].destination} `,
       flight_time: `${format(ticket.segments[0].date, 'HH:mm')} - ${format(arriveDateTo, 'HH:mm')}`,
-      duration: durationTo,
+      duration: `${durationTo.hours}ч ${durationTo.minutes}м`,
       transits_number:
         ticket.segments[0].stops.length === 0
           ? `НЕТ ПЕРЕСАДОК`
           : ticket.segments[0].stops.length === 1
             ? `1 ПЕРЕСАДКА`
             : `${ticket.segments[0].stops.length} ПЕРЕСАДКИ`,
-      transits: ticket.segments[0].stops.join(' ,'),
+      transits: ticket.segments[0].stops.join(', '),
     },
     from: {
       flight: `${ticket.segments[1].origin} - ${ticket.segments[1].destination} `,
       flight_time: `${format(ticket.segments[1].date, 'HH:mm')} - ${format(arriveDateBack, 'HH:mm')}`,
-      duration: durationBack,
+      duration: `${durationBack.hours}ч ${durationBack.minutes}м`,
       transits_number:
         ticket.segments[1].stops.length === 0
           ? `НЕТ ПЕРЕСАДОК`
           : ticket.segments[1].stops.length === 1
             ? `1 ПЕРЕСАДКА`
             : `${ticket.segments[1].stops.length} ПЕРЕСАДКИ`,
-      transits: ticket.segments[1].stops.join(' ,'),
+      transits: ticket.segments[1].stops.join(', '),
     },
   };
   return info;

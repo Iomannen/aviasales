@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { Radio, ConfigProvider } from 'antd';
 import type { CheckboxGroupProps } from 'antd/es/checkbox';
 import style from '../../style/style.module.css';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { ticketActions } from '../../storage/storage';
 const options: CheckboxGroupProps<string>['options'] = [
   { label: 'САМЫЙ ДЕШЕВЫЙ', value: 'Cheapest' },
   { label: 'САМЫЙ БЫСТРЫЙ', value: 'Fastest' },
@@ -12,10 +12,11 @@ const options: CheckboxGroupProps<string>['options'] = [
 
 export const SortTabs: FC = () => {
   const tickets = useSelector((state) => state.tickets.value);
-  const render = useSelector((state) => state.tickets.render);
-  const handleTabs = () => {
+  const dispatch = useDispatch();
+  const handleTabs = (event) => {
     console.log(tickets);
-    console.log(render);
+    dispatch(ticketActions.setFlightsSort(event.target.value));
+    dispatch(ticketActions.setRenderTickets());
   };
 
   return (
