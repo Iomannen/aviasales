@@ -3,8 +3,10 @@ import { TicketComponent } from './ticket/Ticket';
 import { useSelector } from 'react-redux';
 import { Ticket } from '../../hooks/useAxios';
 import style from '../../style/ticketList.module.css';
+import store from '../../storage/storage.ts';
+type RootState = ReturnType<typeof store.getState>;
 export const TicketList: FC = () => {
-  const render = useSelector((state) => state.tickets.render);
+  const render = useSelector((state: RootState) => state.tickets.render);
   return (
     <div className={style.ticketlist}>
       {render.length !== 0

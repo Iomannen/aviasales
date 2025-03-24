@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Checkbox, ConfigProvider } from 'antd';
+import { FC, useState, useEffect } from 'react';
+import { Checkbox, CheckboxChangeEvent, ConfigProvider } from 'antd';
 import style from '../../style/style.module.css';
 import '@ant-design/v5-patch-for-react-19';
 import { useDispatch } from 'react-redux';
@@ -7,7 +7,15 @@ import { ticketActions } from '../../storage/storage';
 
 export const ConnectionsSort: FC = () => {
   const dispatch = useDispatch();
-  const handleCheckbox = (event) => {
+  const [allCheckbox, setCheck] = useState<boolean>(true);
+  useEffect(() => {
+    dispatch(ticketActions.addFilter('All'));
+  }, []);
+
+  const handleCheckbox = (event: CheckboxChangeEvent) => {
+    if (event.target.name !== 'All') {
+      setCheck(false);
+    }
     if (event.target.checked) {
       dispatch(ticketActions.addFilter(event.target.name));
     } else {
@@ -32,6 +40,7 @@ export const ConnectionsSort: FC = () => {
             className={style.checkbox}
             onChange={handleCheckbox}
             name="All"
+            defaultChecked={allCheckbox}
           >
             Все
           </Checkbox>
