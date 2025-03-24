@@ -56,7 +56,7 @@ export const useTicketInfo = (ticket: Ticket) => {
     to: {
       flight: `${ticket.segments[0].origin} - ${ticket.segments[0].destination} `,
       flight_time: `${format(ticket.segments[0].date, 'HH:mm')} - ${format(arriveDateTo, 'HH:mm')}`,
-      duration: `${durationTo.hours}ч ${durationTo.minutes}м`,
+      duration: `${durationTo.hours}ч ${durationTo.minutes !== undefined ? `${durationTo.minutes}м` : ''}`,
       transits_number:
         ticket.segments[0].stops.length === 0
           ? `НЕТ ПЕРЕСАДОК`
@@ -68,7 +68,7 @@ export const useTicketInfo = (ticket: Ticket) => {
     from: {
       flight: `${ticket.segments[1].origin} - ${ticket.segments[1].destination} `,
       flight_time: `${format(ticket.segments[1].date, 'HH:mm')} - ${format(arriveDateBack, 'HH:mm')}`,
-      duration: `${durationBack.hours}ч ${durationBack.minutes}м`,
+      duration: `${durationBack.hours}ч ${durationBack.minutes !== undefined ? `${durationBack.minutes}м` : ''}`,
       transits_number:
         ticket.segments[1].stops.length === 0
           ? `НЕТ ПЕРЕСАДОК`

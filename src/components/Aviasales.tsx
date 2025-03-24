@@ -5,6 +5,7 @@ import { ConnectionsSort } from './connections_sort/ConnectionsSort';
 import { SortTabs } from './flights_sort/SortTabs';
 import { TicketList } from './ticketlist/TicketList';
 import { useRerender, useAxios } from '../hooks/useAxios';
+import { ButtonComponent } from './button/Button';
 export const AviaSales: FC = () => {
   useRerender();
   useAxios();
@@ -15,6 +16,7 @@ export const AviaSales: FC = () => {
       <div>
         <SortTabs />
         <TicketList />
+        <ButtonComponent />
       </div>
     </div>
   );
