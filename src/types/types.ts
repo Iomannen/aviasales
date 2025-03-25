@@ -6,6 +6,8 @@ export interface TicketState {
   connectionSorted: Array<Ticket>;
   value: Array<Ticket>;
   render: Array<Ticket>;
+  cheapest: Array<Ticket>;
+  fastest: Array<Ticket>;
 }
 export interface Ticket {
   // Цена в рублях

@@ -9,6 +9,8 @@ const initialState: TicketState = {
   connectionSorted: [],
   value: [],
   render: [],
+  cheapest: [],
+  fastest: [],
 };
 const ticketSlice = createSlice({
   name: 'tickets',
@@ -29,23 +31,7 @@ const ticketSlice = createSlice({
     },
 
     fillTickets: (state, action) => {
-      switch (state.flightsSort) {
-        case 'Cheapest':
-          state.value = action.payload;
-          break;
-        case 'Fastest':
-          state.value = action.payload.sort(
-            (a: Ticket, b: Ticket) =>
-              a.segments[0].duration - b.segments[0].duration,
-          );
-          break;
-        case 'Optimal':
-          state.value = action.payload;
-          break;
-        default:
-          state.value = action.payload;
-      }
-      state.render = state.value.slice(0, state.renderTickets);
+      state.value = action.payload;
     },
     setRenderTickets: (state) => {
       state.connectionsSort.forEach((filter) => {
@@ -104,10 +90,23 @@ const ticketSlice = createSlice({
           );
           break;
         case 'Optimal':
-          state.sorted = [...state.sorted];
+          state.sorted = [...state.sorted].sort(
+            (a: Ticket, b: Ticket) => a.price - b.price,
+          );
+          state.cheapest = state.sorted;
+          state.sorted = [...state.sorted].sort(
+            (a: Ticket, b: Ticket) =>
+              a.segments[0].duration - b.segments[0].duration,
+          );
+          state.fastest = state.sorted;
+          state.sorted = [...state.sorted].sort((a: Ticket, b: Ticket) => {
+            return (
+              state.cheapest.indexOf(a) +
+              state.fastest.indexOf(a) -
+              (state.cheapest.indexOf(b) + state.fastest.indexOf(b))
+            );
+          });
           break;
-        default:
-          state.sorted = [...state.sorted];
       }
       state.render = state.sorted.slice(0, state.renderTickets);
     },
