@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import style from '../../../style/ticketList.module.css';
 import logo from '../../../assets/s7_logo.png';
-import { Ticket } from '../../../hooks/useAxios';
+import { Ticket } from '../../../types/types';
 import { useTicketInfo } from '../../../hooks/useTicketInfo';
 interface Props {
   ticket: Ticket;

@@ -1,32 +1,12 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { Ticket } from '../hooks/useAxios';
-const loadingSlice = createSlice({
-  name: 'loading',
-  initialState: {
-    loading: true,
-  },
-  reducers: {
-    stopLoading: (state) => {
-      state.loading = false;
-    },
-  },
-});
-interface TicketState {
-  connectionsSort: string[];
-  flightsSort: string;
-  renderTickets: number;
-  sorted: Array<Ticket>;
-  goida: Array<Ticket>;
-  value: Array<Ticket>;
-  render: Array<Ticket>;
-}
+import { Ticket, TicketState } from '../types/types';
 
 const initialState: TicketState = {
   connectionsSort: [],
   flightsSort: 'Cheapest',
   renderTickets: 5,
   sorted: [],
-  goida: [],
+  connectionSorted: [],
   value: [],
   render: [],
 };
@@ -71,7 +51,7 @@ const ticketSlice = createSlice({
       state.connectionsSort.forEach((filter) => {
         switch (filter) {
           case 'All':
-            state.goida = [...state.value];
+            state.connectionSorted = [...state.value];
             break;
           case '0':
             state.sorted = state.value.filter(
@@ -79,7 +59,7 @@ const ticketSlice = createSlice({
                 ticket.segments[0].stops.length === 0 &&
                 ticket.segments[1].stops.length === 0,
             );
-            state.goida.push(...state.sorted);
+            state.connectionSorted.push(...state.sorted);
             break;
           case '1':
             state.sorted = state.value.filter(
@@ -87,7 +67,7 @@ const ticketSlice = createSlice({
                 ticket.segments[0].stops.length === 1 &&
                 ticket.segments[1].stops.length === 1,
             );
-            state.goida.push(...state.sorted);
+            state.connectionSorted.push(...state.sorted);
             break;
           case '2':
             state.sorted = state.value.filter(
@@ -95,7 +75,7 @@ const ticketSlice = createSlice({
                 ticket.segments[0].stops.length === 2 &&
                 ticket.segments[1].stops.length === 2,
             );
-            state.goida.push(...state.sorted);
+            state.connectionSorted.push(...state.sorted);
             break;
           case '3':
             state.sorted = state.value.filter(
@@ -103,14 +83,14 @@ const ticketSlice = createSlice({
                 ticket.segments[0].stops.length === 3 &&
                 ticket.segments[1].stops.length === 3,
             );
-            state.goida.push(...state.sorted);
+            state.connectionSorted.push(...state.sorted);
             break;
           default:
-            state.goida = [...state.value];
+            state.connectionSorted = [...state.value];
         }
       });
-      state.sorted = [...state.goida];
-      state.goida = [];
+      state.sorted = [...state.connectionSorted];
+      state.connectionSorted = [];
       switch (state.flightsSort) {
         case 'Cheapest':
           state.sorted = [...state.sorted].sort(
@@ -136,5 +116,5 @@ const ticketSlice = createSlice({
 
 export const { actions: ticketActions, reducer: ticketReducer } = ticketSlice;
 export default configureStore({
-  reducer: { tickets: ticketSlice.reducer, loading: loadingSlice.reducer },
+  reducer: { tickets: ticketSlice.reducer },
 });

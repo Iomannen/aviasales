@@ -4,6 +4,7 @@ import type { CheckboxGroupProps } from 'antd/es/checkbox';
 import style from '../../style/style.module.css';
 import { useDispatch } from 'react-redux';
 import { ticketActions } from '../../storage/storage';
+
 const options: CheckboxGroupProps<string>['options'] = [
   { label: 'САМЫЙ ДЕШЕВЫЙ', value: 'Cheapest' },
   { label: 'САМЫЙ БЫСТРЫЙ', value: 'Fastest' },

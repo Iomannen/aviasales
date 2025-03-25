@@ -50,3 +50,8 @@
   font-weight: 600;
   line-height: 21px;
 }
+.spin {
+  display: flex;
+  justify-content: center;
+  top: 150px;
+}
