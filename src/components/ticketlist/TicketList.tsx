@@ -6,8 +6,11 @@ import style from '../../style/ticketList.module.css';
 import store from '../../storage/storage.ts';
 import { Loading } from '../spinner/Loading.tsx';
 import { ButtonComponent } from '../button/Button.tsx';
+
 type RootState = ReturnType<typeof store.getState>;
+
 export const TicketList: FC = () => {
+  
   const render = useSelector((state: RootState) => state.tickets.render);
   return (
     <div className={style.ticketlist}>

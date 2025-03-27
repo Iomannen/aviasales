@@ -12,6 +12,7 @@ const initialState: TicketState = {
   cheapest: [],
   fastest: [],
 };
+
 const ticketSlice = createSlice({
   name: 'tickets',
   initialState,

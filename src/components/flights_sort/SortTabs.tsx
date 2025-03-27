@@ -13,6 +13,7 @@ const options: CheckboxGroupProps<string>['options'] = [
 
 export const SortTabs: FC = () => {
   const dispatch = useDispatch();
+
   const handleTabs = (event: RadioChangeEvent) => {
     dispatch(ticketActions.setFlightsSort(event.target.value));
     dispatch(ticketActions.setRenderTickets());

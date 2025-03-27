@@ -6,8 +6,10 @@ import { useDispatch } from 'react-redux';
 import { ticketActions } from '../../storage/storage';
 
 export const ConnectionsSort: FC = () => {
-  const dispatch = useDispatch();
   const [allCheckbox, setCheck] = useState<boolean>(true);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(ticketActions.addFilter('All'));
   }, []);

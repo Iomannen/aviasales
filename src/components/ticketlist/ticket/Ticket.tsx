@@ -3,12 +3,15 @@ import style from '../../../style/ticketList.module.css';
 import logo from '../../../assets/s7_logo.png';
 import { Ticket } from '../../../types/types';
 import { useTicketInfo } from '../../../hooks/useTicketInfo';
+
 interface Props {
   ticket: Ticket;
 }
+
 export const TicketComponent: FC<Props> = (props) => {
   const { ticket } = props;
   const ticketInfo = useTicketInfo(ticket);
+
   return (
     <div className={style.background}>
       <div className={style.header}>
