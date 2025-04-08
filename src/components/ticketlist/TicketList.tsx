@@ -24,17 +24,22 @@ export const TicketList: FC = () => {
     setRenderState(value);
   }, [visibleTickets]);
 
+  const getRender = () => {
+    switch (renderState) {
+      case 'RENDER':
+        return visibleTickets.map((ticket: Ticket, index: number) => (
+          <TicketComponent ticket={ticket} key={`Ticket${index}`} />
+        ));
+      case 'LOADING':
+        return <Loading />;
+      case 'ALERT':
+        return <AlertComponent />;
+    }
+  };
+
   return (
     <div className={style.ticketlist}>
-      {renderState === 'RENDER' ? (
-        visibleTickets.map((ticket: Ticket, index: number) => (
-          <TicketComponent ticket={ticket} key={`Ticket${index}`} />
-        ))
-      ) : renderState === 'LOADING' ? (
-        <Loading />
-      ) : (
-        <AlertComponent />
-      )}
+      {getRender()}
       <div>{renderState === 'RENDER' ? <ButtonComponent /> : ''}</div>
     </div>
   );
