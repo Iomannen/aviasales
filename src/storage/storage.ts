@@ -92,21 +92,10 @@ const ticketSlice = createSlice({
           break;
         case 'Optimal':
           state.sorted = [...state.sorted].sort(
-            (a: Ticket, b: Ticket) => a.price - b.price,
-          );
-          state.cheapest = state.sorted;
-          state.sorted = [...state.sorted].sort(
             (a: Ticket, b: Ticket) =>
-              a.segments[0].duration - b.segments[0].duration,
-          );
-          state.fastest = state.sorted;
-          state.sorted = [...state.sorted].sort((a: Ticket, b: Ticket) => {
-            return (
-              state.cheapest.indexOf(a) +
-              state.fastest.indexOf(a) -
-              (state.cheapest.indexOf(b) + state.fastest.indexOf(b))
-            );
-          });
+              (200000 - b.price) / b.segments[0].duration -
+              (200000 - a.price) / a.segments[0].duration,
+          ); // просто сам придумал коэфициент 200 000 ничего не значит (просто число должно быть больше чем самый дорогой возможный билет условно)
           break;
       }
       state.render = state.sorted.slice(0, state.renderTickets);
