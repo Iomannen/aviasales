@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, JSX, useEffect, useState } from 'react';
 import { TicketComponent } from './ticket/Ticket';
 import { useSelector } from 'react-redux';
 import { Ticket, RenderState, RootState } from '../../types/types.ts';
@@ -24,7 +24,7 @@ export const TicketList: FC = () => {
     setRenderState(value);
   }, [visibleTickets]);
 
-  const getRender = () => {
+  const getRender = (): JSX.Element | JSX.Element[] => {
     switch (renderState) {
       case 'RENDER':
         return visibleTickets.map((ticket: Ticket, index: number) => (
