@@ -16,7 +16,6 @@ export const SortTabs: FC = () => {
 
   const handleTabs = (event: RadioChangeEvent) => {
     dispatch(ticketActions.setFlightsSort(event.target.value));
-    dispatch(ticketActions.setRenderTickets());
   };
 
   return (

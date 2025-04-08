@@ -4,7 +4,6 @@ import style from '../../style/style.module.css';
 import '@ant-design/v5-patch-for-react-19';
 import { useDispatch } from 'react-redux';
 import { ticketActions } from '../../storage/storage';
-
 export const ConnectionsSort: FC = () => {
   const [allCheckbox, setCheck] = useState<boolean>(true);
 
@@ -23,7 +22,6 @@ export const ConnectionsSort: FC = () => {
     } else {
       dispatch(ticketActions.removeFilter(event.target.name));
     }
-    dispatch(ticketActions.setRenderTickets());
   };
 
   return (

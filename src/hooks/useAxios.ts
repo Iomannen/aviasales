@@ -30,6 +30,5 @@ export const useAxios = () => {
   useEffect(() => {
     const priceSorted = tickets.sort((a, b) => a.price - b.price);
     dispatch(ticketActions.fillTickets(priceSorted));
-    dispatch(ticketActions.setRenderTickets());
   }, [stopRef.current]);
 };

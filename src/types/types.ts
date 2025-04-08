@@ -1,14 +1,12 @@
+import store from '../storage/storage.ts';
+
 export interface TicketState {
   connectionsSort: string[];
   flightsSort: string;
   renderTickets: number;
-  sorted: Array<Ticket>;
-  connectionSorted: Array<Ticket>;
   value: Array<Ticket>;
-  render: Array<Ticket>;
-  cheapest: Array<Ticket>;
-  fastest: Array<Ticket>;
 }
+
 export interface Segment {
   // Код города (iata)
   origin: string;
@@ -21,6 +19,7 @@ export interface Segment {
   // Общее время перелёта в минутах
   duration: number;
 }
+
 export interface Ticket {
   // Цена в рублях
   price: number;
@@ -30,4 +29,7 @@ export interface Ticket {
   // В тестовом задании это всегда поиск "туда-обратно" значит состоит из двух элементов
   segments: Array<Segment>;
 }
+
 export type RenderState = 'LOADING' | 'ALERT' | 'RENDER';
+
+export type RootState = ReturnType<typeof store.getState>;
