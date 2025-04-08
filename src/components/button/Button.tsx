@@ -8,7 +8,6 @@ export const ButtonComponent: FC = () => {
 
   const handleClick = () => {
     dispatch(ticketActions.showMoreTickets());
-    dispatch(ticketActions.setRenderTickets());
   };
 
   return (

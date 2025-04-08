@@ -2,7 +2,7 @@ import { FC } from 'react';
 import style from '../../../style/ticketList.module.css';
 import logo from '../../../assets/s7_logo.png';
 import { Ticket } from '../../../types/types';
-import { getTicketInfo } from '../../../hooks/getTicketInfo';
+import { getTicketInfo } from '../../../utils/getTicketInfo';
 
 interface Props {
   ticket: Ticket;
@@ -11,7 +11,6 @@ interface Props {
 export const TicketComponent: FC<Props> = (props) => {
   const { ticket } = props;
   const ticketInfo = getTicketInfo(ticket);
-
   return (
     <div className={style.background}>
       <div className={style.header}>
